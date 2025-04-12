@@ -20,7 +20,7 @@ namespace OShop.Core.Services
         {
             try
             {
-
+                return true;
             }
             catch (Exception ex)
             {
@@ -42,7 +42,7 @@ namespace OShop.Core.Services
 
         public IEnumerable<ProductGroup> GetProductGroups()
         {
-            throw new NotImplementedException();
+            return _context.ProductGroups;
         }
 
         public bool UpdateProductGroup(ProductGroup productGroup)

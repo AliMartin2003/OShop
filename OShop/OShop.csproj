@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OShop.Core\OShop.Core.csproj" />
     <ProjectReference Include="..\OShop.DataLayer\OShop.DataLayer.csproj" />
   </ItemGroup>
 

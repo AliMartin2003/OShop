@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using OShop.Core.Interfaces;
+using OShop.Core.Services;
 using OShop.DataLayer.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +14,7 @@ options.UseSqlServer("server=.;" +
 );
 
 
-
+builder.Services.AddScoped<IProductGroup, ProductGroupServices>();
 
 var app = builder.Build();
 

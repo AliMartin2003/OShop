@@ -1,0 +1,28 @@
+﻿@model List<OShop.DataLayer.Entities.ProductGroup>
+@{
+	Layout = "/Views/shared/_Layout.cshtml";
+}
+<table class="table table-striped">
+	<tr>
+		<th>id</th>
+		<th>نام گروه</th>
+		<th>تصویر</th>
+		<th>عملیات</th>
+	</tr>
+	@foreach(var pg in Model)
+	{
+	<tr>
+		<th>@pg.ProductGroupId</th>
+		<th>@pg.ProducGrouptName</th>
+		<th>
+			<img src="/@pg.ProductGroupImage">
+		</th>
+		<th>
+			<a class="btn-info btn btn-sm">مشاهده محصولات</a>
+			<a class="btn-warning btn btn-sm">ویرایش</a>
+			<a class="btn-danger btn btn-sm">حذف</a>
+		</th>
+	</tr>
+	}
+
+</table>
