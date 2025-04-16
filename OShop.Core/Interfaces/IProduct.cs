@@ -5,16 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using OShop.DataLayer.Entities;
 
-namespace OShop.Core.Interfaces
+namespace OShop.Core.Services
 {
     public interface IProduct
     {
-        Task<bool> CreateProduct(Product product);
-        Task<bool> UpdateProduct(Product product);
-        Task<bool> DeleteProduct(int id);
-        IEnumerable<Product> GetProducts();
-        Task<Product> GetProductById(int id);
-
-
+        bool CreateProduct(Product productGroup);
+        bool UpdateProductGroup(Product productGroup);
+        IEnumerable<Product> GetProductGroups();
+        Product GetProductGroup(int productId);
+        bool DeleteProductGroup(int productId);
     }
 }

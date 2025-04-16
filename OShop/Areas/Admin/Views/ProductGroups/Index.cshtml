@@ -1,7 +1,8 @@
 ﻿@model List<OShop.DataLayer.Entities.ProductGroup>
 @{
-	Layout = "/Views/shared/_Layout.cshtml";
+    Layout = "/areas/admin/Views/shared/_Layout.cshtml";
 }
+<a class="btn btn-sm btn-success " asp-controller="ProductGroups" asp-action="CreateProductGroup" asp-area="admin">افزودن گروه</a>
 <table class="table table-striped">
 	<tr>
 		<th>id</th>
@@ -18,9 +19,15 @@
 			<img src="/@pg.ProductGroupImage">
 		</th>
 		<th>
-			<a class="btn-info btn btn-sm">مشاهده محصولات</a>
-			<a class="btn-warning btn btn-sm">ویرایش</a>
-			<a class="btn-danger btn btn-sm">حذف</a>
+			<a asp-controller="ProductGroups" asp-action="ShowProductGroup" asp-area="admin" class="text-info">
+				<i class="bi bi-eye-fill"></i>
+			</a>
+			<a asp-controller="ProductGroups" asp-action="EditProductGroup" asp-area="admin" class="text-warning">
+				<i class="bi bi-pencil-square"></i>
+			</a>
+			<a asp-controller="ProductGroups" asp-action="DeletePrdouctGroup" asp-area="admin" class="text-danger">
+				<i class="bi bi-trash3-fill"></i>
+			</a>
 		</th>
 	</tr>
 	}

@@ -17,10 +17,19 @@ namespace OShop.Areas.Admin.Controllers
             var ProductGroups = _productGroupServices.GetProductGroups().ToList();
             return View(ProductGroups);
         }
+
+        [HttpGet]
         public IActionResult CreateBlogGroup()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult CreateBlogGroup()
+        {
+            return View();
+        }
+
         public IActionResult UpdateBlogGroup()
         {
             return View();
