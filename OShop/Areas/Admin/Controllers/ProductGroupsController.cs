@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OShop.Core.Interfaces;
+using OShop.Core.Tools;
+using OShop.DataLayer.DTOS.AdminViewModels;
+using OShop.DataLayer.Entities;
 
 namespace OShop.Areas.Admin.Controllers
 {
@@ -25,8 +28,27 @@ namespace OShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateBlogGroup()
+        public IActionResult CreateBlogGroup(CreateProductGroupViewModel createProduct)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createProduct);
+            }
+            ProductGroup productGroup = new ProductGroup()
+            {
+                ProductGroupName = createProduct.ProducGrouptName,
+            };
+            if (productGroup.ProductGroupImage!=null && productGroup.ProductGroupImage.Length>0)
+            {
+                if (!PublicServicesTools.IsImage(createProduct.ProductGroupImage))
+                {
+                    throw new Exception("این فایل تصویر نیست");
+                }
+                PublicServicesTools.SaveImage(createProduct.ProductGroupImage, "ProductGroups","Qualitied");
+                IFormFile compressed = PublicServicesTools.CompressImage(createProduct.ProductGroupImage);
+                PublicServicesTools.SaveImage(createProduct.ProductGroupImage, "ProductGroups", "Minified");
+
+            }
             return View();
         }
 
