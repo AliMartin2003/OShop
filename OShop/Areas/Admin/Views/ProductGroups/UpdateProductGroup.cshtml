@@ -1,0 +1,14 @@
+﻿@model OShop.DataLayer.DTOS.AdminViewModels.EditProductGroupViewModel
+
+<form method="post" enctype="multipart/form-data">
+	<div class="row">
+		<div class="col-8">
+			<input class="form-control mb-3" asp-for="ProductGroupName" />
+			<input class="form-control mb-3" asp-for="ProductGroupImage" />
+			<input class="btn-warning w-100" type="submit" value="ویرایش" />
+		</div>
+		<div class="col-4">
+			<img class="img-thumbnail w-100 h-100" src="/Images/ProductGroups/@Model.ProductGroupImageName" />
+		</div>
+	</div>
+</form>

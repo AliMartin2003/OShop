@@ -14,5 +14,6 @@ namespace OShop.Core.Interfaces
         IEnumerable<User> GetUsers();
         User GetUser(int userId);
         bool DeleteUser(int userId);
+        int GetUserCounts();
     }
 }

@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OShop.Core.Interfaces;
+using OShop.Core.Tools;
+using OShop.DataLayer.DTOS.AdminViewModels;
+using OShop.DataLayer.Entities;
 
 namespace OShop.Areas.Admin.Controllers
 {
@@ -19,18 +22,61 @@ namespace OShop.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateBlogGroup()
+        public IActionResult CreateProductGroup()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateBlogGroup()
+        public IActionResult CreateProductGroup(CreateProductGroupViewModel createProduct)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View(createProduct);
+            }
+            ProductGroup productGroup = new ProductGroup()
+            {
+                ProductGroupName = createProduct.ProductGroupName,
+            };
+            if (createProduct.ProductGroupImage != null && createProduct.ProductGroupImage.Length > 0)
+            {
+              
+
+                string ImageName = PublicServicesTools.ImageNameGenerator(createProduct.ProductGroupImage);
+                PublicServicesTools.SaveImage(createProduct.ProductGroupImage, "ProductGroups", "Qualitied", ImageName);
+                IFormFile compressed = PublicServicesTools.CompressImage(createProduct.ProductGroupImage);
+                PublicServicesTools.SaveImage(createProduct.ProductGroupImage, "ProductGroups", "Minified", ImageName);
+                productGroup.ProductGroupImage = ImageName;
+            }
+            if (!_productGroupServices.CreateProductGroup(productGroup))
+            {
+                TempData["Error"] = "عملیات با موفقیت شکست خورد";
+                return Redirect("/admin/Home/index");
+            }
+            TempData["Success"] = "عملیات با موفقیت انجام شد";
+            return Redirect("/admin/Home/index");
         }
 
-        public IActionResult UpdateBlogGroup()
+        [HttpGet]
+        public IActionResult UpdateProductGroup(int id)
+        {
+            ProductGroup productGroup = _productGroupServices.GetProductGroup(id);
+            if (productGroup == null)
+			{
+                TempData["Error"] = "گروه یافت نشد";
+                return Redirect("/Admin/ProductGroups/index");
+			}
+            EditProductGroupViewModel edit = new EditProductGroupViewModel
+            {
+                Id = productGroup.ProductGroupId,
+                ProductGroupImageName = productGroup.ProductGroupImage,
+                ProductGroupName = productGroup.ProductGroupName,
+            };
+            return View(edit);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateProductGroup()
         {
             return View();
         }

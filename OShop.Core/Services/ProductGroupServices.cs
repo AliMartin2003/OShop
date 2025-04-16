@@ -20,6 +20,8 @@ namespace OShop.Core.Services
         {
             try
             {
+                _context.ProductGroups.Add(productGroup);
+                _context.SaveChanges();
                 return true;
             }
             catch (Exception ex)
@@ -37,7 +39,7 @@ namespace OShop.Core.Services
 
         public ProductGroup GetProductGroup(int productId)
         {
-            throw new NotImplementedException();
+            return _context.ProductGroups.FirstOrDefault(pg=> pg.ProductGroupId==productId);
         }
 
         public IEnumerable<ProductGroup> GetProductGroups()
@@ -47,7 +49,17 @@ namespace OShop.Core.Services
 
         public bool UpdateProductGroup(ProductGroup productGroup)
         {
-            throw new NotImplementedException();
+			try
+			{
+                _context.ProductGroups.Update(productGroup);
+                _context.SaveChanges();
+                return true;
+            }
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+                return false;
+			}
         }
     }
 }

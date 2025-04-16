@@ -15,6 +15,8 @@ options.UseSqlServer("server=.;" +
 
 
 builder.Services.AddScoped<IProductGroup, ProductGroupServices>();
+builder.Services.AddScoped<IProduct, ProductServices>();
+builder.Services.AddScoped<IUser, UserServices>();
 
 var app = builder.Build();
 

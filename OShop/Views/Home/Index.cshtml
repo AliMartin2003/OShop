@@ -1,8 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@section Slider
+{
+       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/Images/ProductGroups/9008c766-8da7-4442-97f2-7cb4ff487619.jpg" class="d-block w-100" style="max-height : 150px;" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="Images/ProductGroups/93a442e8-5df4-4fff-a6da-f68ba5d9d1d6.jpg" class="d-block w-100" style="max-height : 150px;" alt="...">
+    </div>
+}
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@section Scripts
+{
+
+}

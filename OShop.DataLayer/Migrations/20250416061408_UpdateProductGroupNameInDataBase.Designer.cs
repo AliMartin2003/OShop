@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OShop.DataLayer.Context;
 
@@ -11,9 +12,10 @@ using OShop.DataLayer.Context;
 namespace OShop.DataLayer.Migrations
 {
     [DbContext(typeof(OShopContext))]
-    partial class OShopContextModelSnapshot : ModelSnapshot
+    [Migration("20250416061408_UpdateProductGroupNameInDataBase")]
+    partial class UpdateProductGroupNameInDataBase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

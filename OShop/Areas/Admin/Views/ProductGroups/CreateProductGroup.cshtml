@@ -1,0 +1,14 @@
+﻿@model OShop.DataLayer.DTOS.AdminViewModels.CreateProductGroupViewModel
+
+
+<form method="post" enctype="multipart/form-data">
+	<input class="form-controll" asp-for="ProductGroupName" />
+	<input class="form-controll" asp-for="ProductGroupImage" />
+	<input class="btn-success"   type="submit" value="افزودن" />
+	<div class="text-danger" asp-validation-summary="All"></div>
+</form>
+
+@section Scripts
+{
+	<partial name = "_ValidationScriptsPartial.cshtml" />
+}

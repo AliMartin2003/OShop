@@ -2,4 +2,333 @@
 @{
     Layout = "/areas/admin/Views/shared/_Layout.cshtml";
 }
-<h1>صفحه مدیریت</h1>
+
+            
+            <!-- Stats Cards -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card stat-card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="text-muted">مجموع فروش</h6>
+                                    <h3>$24,569</h3>
+                                    <span class="text-success"><i class="fas fa-arrow-up"></i> 12.5%</span>
+                                </div>
+                                <div class="bg-primary bg-opacity-10 p-3 rounded">
+                                    <i class="fas fa-dollar-sign text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stat-card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="text-muted">گروه ها</h6>
+                                    <h3>1,245</h3>
+                                    <span class="text-success"><i class="fas fa-arrow-up"></i> 8.3%</span>
+                                </div>
+                                <div class="bg-primary bg-opacity-10 p-3 rounded">
+                                    <i class="fas fa-shopping-cart text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stat-card shadow-sm orange">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="text-muted">کاربران</h6>
+                                    <h3>@ViewBag.UserCounts</h3>
+                                    <span class="text-success"><i class="fas fa-arrow-up"></i> @ViewBag.UserCounts</span>
+                                </div>
+                                <div class="bg-orange bg-opacity-10 p-3 rounded">
+                                    <i class="fas fa-users text-orange"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stat-card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="text-muted">محصولات</h6>
+                                    <h3>567</h3>
+                                    <span class="text-danger"><i class="fas fa-arrow-down"></i> 2.1%</span>
+                                </div>
+                                <div class="bg-primary bg-opacity-10 p-3 rounded">
+                                    <i class="fas fa-box text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel for Featured Products -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header card-header-custom">
+                            <h5 class="mb-0">Featured Products</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="featuredProducts" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#featuredProducts" data-bs-slide-to="0" class="active"></button>
+                                    <button type="button" data-bs-target="#featuredProducts" data-bs-slide-to="1"></button>
+                                    <button type="button" data-bs-target="#featuredProducts" data-bs-slide-to="2"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="card product-card">
+                                                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Product">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Wireless Headphones</h5>
+                                                        <p class="card-text text-muted">Premium sound quality</p>
+                                                        <span class="badge bg-success">In Stock</span>
+                                                        <h5 class="mt-2">$129.99</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card product-card">
+                                                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Product">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Smart Watch</h5>
+                                                        <p class="card-text text-muted">Fitness tracker</p>
+                                                        <span class="badge bg-warning">Low Stock</span>
+                                                        <h5 class="mt-2">$199.99</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card product-card">
+                                                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Product">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Bluetooth Speaker</h5>
+                                                        <p class="card-text text-muted">Portable design</p>
+                                                        <span class="badge bg-success">In Stock</span>
+                                                        <h5 class="mt-2">$89.99</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card product-card">
+                                                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Product">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Wireless Charger</h5>
+                                                        <p class="card-text text-muted">Fast charging</p>
+                                                        <span class="badge bg-success">In Stock</span>
+                                                        <h5 class="mt-2">$49.99</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="card product-card">
+                                                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Product">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Laptop Backpack</h5>
+                                                        <p class="card-text text-muted">Water resistant</p>
+                                                        <span class="badge bg-success">In Stock</span>
+                                                        <h5 class="mt-2">$59.99</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card product-card">
+                                                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Product">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Power Bank</h5>
+                                                        <p class="card-text text-muted">10000mAh capacity</p>
+                                                        <span class="badge bg-success">In Stock</span>
+                                                        <h5 class="mt-2">$39.99</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card product-card">
+                                                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Product">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Wireless Earbuds</h5>
+                                                        <p class="card-text text-muted">Noise cancelling</p>
+                                                        <span class="badge bg-danger">Out of Stock</span>
+                                                        <h5 class="mt-2">$149.99</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card product-card">
+                                                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Product">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Phone Stand</h5>
+                                                        <p class="card-text text-muted">Adjustable angle</p>
+                                                        <span class="badge bg-success">In Stock</span>
+                                                        <h5 class="mt-2">$19.99</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#featuredProducts" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#featuredProducts" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders and Top Products -->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header card-header-custom d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Recent Orders</h5>
+                            <a href="#" class="btn btn-sm btn-light">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Customer</th>
+                                            <th>Date</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#12345</td>
+                                            <td>John Smith</td>
+                                            <td>2023-06-15</td>
+                                            <td>$245.99</td>
+                                            <td><span class="badge bg-success">Completed</span></td>
+                                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#12344</td>
+                                            <td>Sarah Johnson</td>
+                                            <td>2023-06-15</td>
+                                            <td>$189.50</td>
+                                            <td><span class="badge bg-warning">Processing</span></td>
+                                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#12343</td>
+                                            <td>Michael Brown</td>
+                                            <td>2023-06-14</td>
+                                            <td>$320.00</td>
+                                            <td><span class="badge bg-info">Shipped</span></td>
+                                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#12342</td>
+                                            <td>Emily Davis</td>
+                                            <td>2023-06-14</td>
+                                            <td>$75.25</td>
+                                            <td><span class="badge bg-danger">Cancelled</span></td>
+                                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#12341</td>
+                                            <td>Robert Wilson</td>
+                                            <td>2023-06-13</td>
+                                            <td>$425.75</td>
+                                            <td><span class="badge bg-success">Completed</span></td>
+                                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header card-header-custom">
+                            <h5 class="mb-0">Top Selling Products</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Wireless Headphones</h6>
+                                        <small class="text-muted">Electronics</small>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">156</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Smart Watch</h6>
+                                        <small class="text-muted">Wearables</small>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">128</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Bluetooth Speaker</h6>
+                                        <small class="text-muted">Audio</small>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">97</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Laptop Backpack</h6>
+                                        <small class="text-muted">Accessories</small>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">85</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Wireless Charger</h6>
+                                        <small class="text-muted">Accessories</small>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">72</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card shadow-sm">
+                        <div class="card-header card-header-custom">
+                            <h5 class="mb-0">Quick Actions</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-plus me-2"></i> Add New Product
+                                </button>
+                                <button class="btn btn-orange">
+                                    <i class="fas fa-tag me-2"></i> Create Discount
+                                </button>
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-chart-bar me-2"></i> View Reports
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
