@@ -7,6 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\Prodcuts\org\088e5d22-74de-4742-81ad-066d38f7cf98.png" />
+    <Content Remove="wwwroot\images\Prodcuts\org\2dd11fa4-d909-4ad3-926a-7bd34cdbfd0b.png" />
+    <Content Remove="wwwroot\images\Prodcuts\org\6678e94b-5235-4732-9f34-7fc3efabc3e6.png" />
+    <Content Remove="wwwroot\images\Prodcuts\org\8d86d636-2537-4e94-bba3-e4dbb443f0d7.png" />
+    <Content Remove="wwwroot\images\Prodcuts\org\ca2bf2e7-ebc3-4cf8-9aab-ddb117c2da5c.png" />
+    <Content Remove="wwwroot\images\Prodcuts\org\d5e34194-d100-451a-91d6-34d074149749.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\Prodcuts\org\088e5d22-74de-4742-81ad-066d38f7cf98.png" />
+    <None Include="wwwroot\images\Prodcuts\org\2dd11fa4-d909-4ad3-926a-7bd34cdbfd0b.png" />
+    <None Include="wwwroot\images\Prodcuts\org\6678e94b-5235-4732-9f34-7fc3efabc3e6.png" />
+    <None Include="wwwroot\images\Prodcuts\org\8d86d636-2537-4e94-bba3-e4dbb443f0d7.png" />
+    <None Include="wwwroot\images\Prodcuts\org\ca2bf2e7-ebc3-4cf8-9aab-ddb117c2da5c.png" />
+    <None Include="wwwroot\images\Prodcuts\org\d5e34194-d100-451a-91d6-34d074149749.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

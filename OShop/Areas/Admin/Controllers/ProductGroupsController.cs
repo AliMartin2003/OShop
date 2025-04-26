@@ -28,7 +28,7 @@ namespace OShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateProductGroup(CreateProductGroupViewModel createProduct)
+        public async Task<IActionResult> CreateProductGroup(CreateProductGroupViewModel createProduct)
         {
             if (!ModelState.IsValid)
             {
@@ -40,13 +40,12 @@ namespace OShop.Areas.Admin.Controllers
             };
             if (createProduct.ProductGroupImage != null && createProduct.ProductGroupImage.Length > 0)
             {
-              
 
-                string ImageName = PublicServicesTools.ImageNameGenerator(createProduct.ProductGroupImage);
-                PublicServicesTools.SaveImage(createProduct.ProductGroupImage, "ProductGroups", "Qualitied", ImageName);
-                IFormFile compressed = PublicServicesTools.CompressImage(createProduct.ProductGroupImage);
-                PublicServicesTools.SaveImage(createProduct.ProductGroupImage, "ProductGroups", "Minified", ImageName);
-                productGroup.ProductGroupImage = ImageName;
+
+                string ImageName = Guid.NewGuid().ToString();
+                await PublicTools.SaveOriginalImageAsync(createProduct.ProductGroupImage, "ProductGroups", ImageName);
+                await PublicTools.SaveThumbnailImageAsync(createProduct.ProductGroupImage, "Thumb", ImageName);
+                productGroup.ProductGroupImage = ImageName + Path.GetExtension(createProduct.ProductGroupImage.FileName);
             }
             if (!_productGroupServices.CreateProductGroup(productGroup))
             {
@@ -62,10 +61,10 @@ namespace OShop.Areas.Admin.Controllers
         {
             ProductGroup productGroup = _productGroupServices.GetProductGroup(id);
             if (productGroup == null)
-			{
+            {
                 TempData["Error"] = "گروه یافت نشد";
                 return Redirect("/Admin/ProductGroups/index");
-			}
+            }
             EditProductGroupViewModel edit = new EditProductGroupViewModel
             {
                 Id = productGroup.ProductGroupId,
