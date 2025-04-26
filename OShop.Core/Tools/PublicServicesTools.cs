@@ -1,85 +1,27 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Jpeg;
-using SixLabors.ImageSharp.Processing;
+﻿using System.Drawing;
+using System.Drawing.Imaging;
+using Microsoft.AspNetCore.Http;
 
 namespace OShop.Core.Tools
 {
-    public static class PublicServicesTools
+    public static class PublicTools
     {
-        public static string SaveImage(IFormFile file, string saveLocation, string? subFolder, string? imageName)
-        {
-            if (file == null || file.Length == 0)
-            {
-                throw new ArgumentException("No file uploaded or file is empty.");
-            }
 
-            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", saveLocation);
-            if (!Directory.Exists(uploadsFolder))
-            {
-                Directory.CreateDirectory(uploadsFolder);
-            }
-
-            string uniqueFileName = imageName ??
-                Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-
-            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                file.CopyTo(fileStream);
-            }
-
-            return uniqueFileName;
-        }
-
-        public static IFormFile CompressImage(IFormFile file)
-        {
-            if (file == null || file.Length == 0)
-            {
-                throw new ArgumentException("No file uploaded or file is empty.");
-            }
-
-            using var image = Image.Load(file.OpenReadStream());
-            using var memoryStream = new MemoryStream();
-
-			// Resize if needed (example: resize to 800x600 maintaining aspect ratio)
-			image.Mutate(x => x.Resize(new ResizeOptions
-			{
-				Size = new Size(800, 600),
-				Mode = ResizeMode.Max
-			}));
-
-			var encoder = new JpegEncoder { Quality = 70 };
-            image.Save(memoryStream, encoder);
-            memoryStream.Position = 0;
-
-            return new FormFile(
-                memoryStream,
-                0,
-                memoryStream.Length,
-                Path.GetFileNameWithoutExtension(file.FileName) + "_compressed.jpg",
-                "compressed_" + file.FileName)
-            {
-                Headers = file.Headers,
-                ContentType = "image/jpeg"
-            };
-        }
-
-        public static bool IsImage(IFormFile file)
+        public static async Task<bool> SaveOriginalImageAsync(
+        IFormFile imageFile,
+        string folderName,
+        string fileNameWithoutExtension)
         {
             try
             {
-                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp" };
-                var extension = Path.GetExtension(file.FileName).ToLower();
 
-                if (!allowedExtensions.Contains(extension))
-                {
-                    return false;
-                }
+                var targetDir = Path.Combine(Directory.GetCurrentDirectory(), "images", folderName, "org");
+                Directory.CreateDirectory(targetDir);
+                var extension = Path.GetExtension(imageFile.FileName);
+                var fullPath = Path.Combine(targetDir, fileNameWithoutExtension + extension);
+                using var stream = new FileStream(fullPath, FileMode.Create);
+                await imageFile.CopyToAsync(stream);
 
-                // Attempt to load the image to verify it's actually an image file
-                using var image = Image.Load(file.OpenReadStream());
                 return true;
             }
             catch
@@ -88,9 +30,69 @@ namespace OShop.Core.Tools
             }
         }
 
-        public static string ImageNameGenerator(IFormFile image)
+
+        public static async Task<bool> SaveThumbnailImageAsync(
+     IFormFile imageFile,
+     string folderName,
+     string fileNameWithoutExtension,
+     int thumbWidth = 150,
+     int thumbHeight = 150,
+     int jpegQuality = 75)
         {
-            return Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+            try
+            {
+                // build a dedicated “thumb” subfolder under images/{folderName}
+                var targetDir = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "images",
+                    folderName,
+                    "thumb");
+                Directory.CreateDirectory(targetDir);
+
+                // read the uploaded file into memory
+                using var mem = new MemoryStream();
+                await imageFile.CopyToAsync(mem);
+                mem.Position = 0;
+
+                // load & generate thumbnail
+                using var img = Image.FromStream(mem);
+                using var thumb = img.GetThumbnailImage(
+                    thumbWidth,
+                    thumbHeight,
+                    () => false,
+                    IntPtr.Zero);
+
+                // prepare JPEG encoder with quality parameter
+                var encoder = GetEncoder(ImageFormat.Jpeg);
+                var encParams = new EncoderParameters(1);
+                encParams.Param[0] = new EncoderParameter(
+                    Encoder.Quality,
+                    jpegQuality);
+
+                // save to images/{folderName}/thumb/{fileName}.jpg
+                var thumbPath = Path.Combine(
+                    targetDir,
+                    fileNameWithoutExtension + ".jpg");
+                thumb.Save(thumbPath, encoder, encParams);
+
+                return true;
+            }
+            catch
+            {
+                // you may log the exception here if needed
+                return false;
+            }
         }
+
+        // helper to pick the right encoder
+        private static ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            return ImageCodecInfo
+                .GetImageDecoders()
+                .FirstOrDefault(c => c.FormatID == format.Guid);
+        }
+
+
+
     }
 }

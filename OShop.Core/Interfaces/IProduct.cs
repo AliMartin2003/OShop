@@ -10,9 +10,11 @@ namespace OShop.Core.Services
     public interface IProduct
     {
         bool CreateProduct(Product productGroup);
-        bool UpdateProductGroup(Product productGroup);
-        IEnumerable<Product> GetProductGroups();
-        Product GetProductGroup(int productId);
-        bool DeleteProductGroup(int productId);
+        bool UpdateProduct(Product productGroup);
+        IEnumerable<Product> GetProducts();
+        Product GetProduct(int productId);
+        bool DeleteProduct(int productId);
+        int GetProductsCount();
+        Product GetProductByName(string productName);
     }
 }

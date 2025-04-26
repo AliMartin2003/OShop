@@ -20,6 +20,7 @@ namespace OShop.Areas.Admin.Controllers
         public IActionResult Index()
         {
             ViewBag.UserCounts = _UserServices.GetUserCounts();
+            ViewBag.ProductsCount = _ProductServices.GetProductsCount();
             return View();
         }
     }

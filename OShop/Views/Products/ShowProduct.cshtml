@@ -1,0 +1,209 @@
+﻿@model OShop.DataLayer.DTOS.Main.ShowProductViewModel
+
+    
+   
+    <link rel="stylesheet" href="/css/ShowProduct.css" />
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-5 mb-4">
+                <div class="product-card">
+                    <div class="product-header">
+                        <img id="mainImage" src="No.png" alt="تصویر محصول" class="product-thumbnail">
+                        <div class="product-badge" id="availabilityBadge">موجود</div>
+                    </div>
+                    <div class="p-3">
+                        <div class="gallery-thumbnails d-flex flex-wrap">
+                            <img src="/Images/Prodcuts/org/@Model.Thumbnail" class="gallery-thumbnail" onclick="changeMainImage(this)">
+                            <img src="/Images/Prodcuts/org/@Model.Thumbnail" onclick="changeMainImage(this)">
+                            <img src="/Images/Prodcuts/org/@Model.Thumbnail" onclick="changeMainImage(this)">
+                            <img src="/Images/Prodcuts/org/@Model.Thumbnail" onclick="changeMainImage(this)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 mb-4">
+                <div class="product-card h-100 p-4">
+                    <h1 class="product-title" id="productName">@Model.ProductName</h1>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="product-price" id="productPrice">@Model.Price</span>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="product-seller">
+                            <i class="fas fa-store"></i> فروشنده: <span id="productSeller">@Model.Seller</span>
+                        </span>
+                        <span class="product-stats me-4">
+                            <i class="fas fa-chart-line"></i> تعداد فروش: <span id="sellCount">@Model.SellCount</span>
+                        </span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small class="text-muted" class="@(Model.IsExists ? "text-success" : "text-danger")">موجودی: @(Model.IsExists ?"موجود":"ناموجود")</small>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5 class="mb-3">توضیحات محصول</h5>
+                        <p class="product-description" id="productDescription">
+                            @Model.ProductDescription
+                        </p>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="input-group" style="width: 150px;">
+                            <button class="btn btn-outline-secondary" type="button" onclick="decreaseQuantity()">-</button>
+                            <input type="text" class="form-control text-center" value="1" id="quantity">
+                            <button class="btn btn-outline-secondary" type="button" onclick="increaseQuantity()">+</button>
+                        </div>
+                        <button class="btn btn-primary me-3" id="addToCartBtn">
+                            <i class="fas fa-cart-plus me-2"></i> افزودن به سبد خرید
+                        </button>
+                    </div>
+                    
+                    <div class="d-flex">
+                        <button class="btn btn-outline-secondary me-2">
+                            <i class="fas fa-share-alt"></i> اشتراک گذاری
+                        </button>
+                        <button class="btn btn-outline-danger">
+                            <i class="far fa-heart"></i> افزودن به علاقه‌مندی‌ها
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Related Products -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h4 class="mb-4">محصولات مشابه</h4>
+                <div class="row">
+                    <!-- Related Product 1 -->
+                    <div class="col-md-3 col-6 mb-4">
+                        <div class="product-card h-100">
+                            <div class="product-header">
+                                <img src="related1.jpg" alt="محصول مشابه" class="product-thumbnail">
+                                <div class="product-badge">جدید</div>
+                            </div>
+                            <div class="p-3">
+                                <h5 class="product-title">محصول مشابه 1</h5>
+                                <div class="product-price">85,000 تومان</div>
+                                <div class="product-stats">
+                                    <i class="fas fa-chart-line"></i> فروش: 45
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Product 2 -->
+                    <div class="col-md-3 col-6 mb-4">
+                        <div class="product-card h-100">
+                            <div class="product-header">
+                                <img src="related2.jpg" alt="محصول مشابه" class="product-thumbnail">
+                                <div class="product-badge sold-badge">ناموجود</div>
+                            </div>
+                            <div class="p-3">
+                                <h5 class="product-title">محصول مشابه 2</h5>
+                                <div class="product-price">120,000 تومان</div>
+                                <div class="product-stats">
+                                    <i class="fas fa-chart-line"></i> فروش: 78
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Product 3 -->
+                    <div class="col-md-3 col-6 mb-4">
+                        <div class="product-card h-100">
+                            <div class="product-header">
+                                <img src="related3.jpg" alt="محصول مشابه" class="product-thumbnail">
+                            </div>
+                            <div class="p-3">
+                                <h5 class="product-title">محصول مشابه 3</h5>
+                                <div class="product-price">95,000 تومان</div>
+                                <div class="product-stats">
+                                    <i class="fas fa-chart-line"></i> فروش: 32
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Product 4 -->
+                    <div class="col-md-3 col-6 mb-4">
+                        <div class="product-card h-100">
+                            <div class="product-header">
+                                <img src="related4.jpg" alt="محصول مشابه" class="product-thumbnail">
+                                <div class="product-badge">پرفروش</div>
+                            </div>
+                            <div class="p-3">
+                                <h5 class="product-title">محصول مشابه 4</h5>
+                                <div class="product-price">150,000 تومان</div>
+                                <div class="product-stats">
+                                    <i class="fas fa-chart-line"></i> فروش: 112
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  @section Scripts
+  {
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    
+    @*<script>
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'albumLabel': 'تصویر %1 از %2',
+            'disableScrolling': true
+        });
+
+        function changeMainImage(element) {
+            $('#mainImage').attr('src', $(element).attr('src'));
+        }
+
+        function increaseQuantity() {
+            var quantity = parseInt($('#quantity').val());
+            $('#quantity').val(quantity + 1);
+        }
+
+        function decreaseQuantity() {
+            var quantity = parseInt($('#quantity').val());
+            if (quantity > 1) {
+                $('#quantity').val(quantity - 1);
+            }
+        }
+
+        $(document).ready(function() {
+            var productData = {
+                ProductName: "محصول نمونه",
+                ProductDescription: "این یک توضیح نمونه برای محصول است که می‌تواند شامل ویژگی‌ها، مشخصات فنی و دیگر اطلاعات مربوط به محصول باشد. این متن به صورت نمونه قرار داده شده است.",
+                SellCount: 42,
+                IsExists: true,
+                Thumbnail: "product-image.jpg",
+                Price: 99000,
+                Seller: "فروشگاه اینترنتی نمونه",
+                ProductGroupId: 1
+            };
+
+            $('#productName').text(productData.ProductName);
+            $('#productDescription').text(productData.ProductDescription);
+            $('#sellCount').text(productData.SellCount);
+            $('#productPrice').text(productData.Price.toLocaleString('fa-IR') + ' تومان');
+            $('#productSeller').text(productData.Seller);
+            $('#mainImage').attr('src', productData.Thumbnail);
+            
+            if (!productData.IsExists) {
+                $('#availabilityBadge').text('ناموجود').removeClass('bg-danger').addClass('sold-badge');
+                $('#addToCartBtn').prop('disabled', true).text('ناموجود');
+            }
+        });
+    </script>*@
+
+  }

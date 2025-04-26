@@ -1,0 +1,53 @@
+﻿@model OShop.DataLayer.DTOS.AdminViewModels.CreateProductViewModel
+
+<form  method="post" enctype="multipart/form-data" class="form-horizontal">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="ProductName" class="control-label"></label>
+        <input asp-for="ProductName" class="form-control" />
+        <span asp-validation-for="ProductName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProductDescription" class="control-label"></label>
+        <textarea asp-for="ProductDescription" class="form-control"></textarea>
+        <span asp-validation-for="ProductDescription" class="text-danger"></span>
+    </div>
+
+     <div class="form-group">
+        <label asp-for="ProductGroupId" class="control-label"></label>
+        <input asp-for="ProductGroupId" class="form-control" />
+        <span asp-validation-for="ProductGroupId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group form-check">
+        <input asp-for="IsExists" class="form-check-input" />
+        <label asp-for="IsExists" class="form-check-label"></label>
+    </div>
+
+    <div class="form-group form-check">
+        <input asp-for="IsPublished" class="form-check-input" />
+        <label asp-for="IsPublished" class="form-check-label"></label>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Thumbnail" class="control-label"></label>
+        <input asp-for="Thumbnail" type="file" class="form-control-file" />
+        <span asp-validation-for="Thumbnail" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">ثبت محصول</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

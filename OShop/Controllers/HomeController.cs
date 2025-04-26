@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using OShop.Core.Services;
 using OShop.Models;
 
 namespace OShop.Controllers
@@ -7,14 +8,16 @@ namespace OShop.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IProduct _ProductServices;
+        public HomeController(ILogger<HomeController> logger, IProduct ProductServices)
         {
             _logger = logger;
+            _ProductServices = ProductServices;
         }
 
         public IActionResult Index()
         {
+            ViewBag.Products = _ProductServices.GetProducts().ToList();
             return View();
         }
 
